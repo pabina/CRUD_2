@@ -8,13 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import apiFunctinality from "../Service/api";
-import axios from "axios";
+import {useNavigate} from 'react-router-dom'
+
 
 const MyapiFunctinality = new apiFunctinality();
 // import { adduser } from '../Service/api';
-// import { adduser } from '../service/api';
+// import { adduser } from '../servi=ce/api';
 
 const Container = styled(FormControl)`
   width: 50%;
@@ -31,23 +32,24 @@ const defaultValue = {
 
 const AddUser = () => {
   //FOR VIEWING USER
-    const [allUsers, setAllUsers] = useState();
+    // const [allUsers, setAllUsers] = useState();
 
-    useEffect( () => {
-      const fetchalluser = async () => {
-        const res = await axios.get("/home/view");
-        setAllUsers(res);
-      };
-      fetchalluser();
-      console.log(allUsers);
-    });
+    // useEffect( () => {
+    //   const fetchalluser = async () => {
+    //     const res = await axios.get("/home/view");
+    //     setAllUsers(res);
+    //   };
+    //   fetchalluser();
+    //   console.log(allUsers);
+    // });
 
   // console.log(allUsers);
 
-  const a = 5;
-  console.log(a);
+  // const a = 5;
+  // console.log(a);
 
   //FOR ADDING USER
+const navigate=useNavigate();
   const [state, setState] = useState({ defaultValue });
 
   const valuechange = function (e) {
@@ -60,6 +62,7 @@ const AddUser = () => {
   const onbuttonClick = async function () {
     await MyapiFunctinality.adduser(state);
     console.log("you have clicked button");
+    navigate("/allUsers");
   };
 
   return (

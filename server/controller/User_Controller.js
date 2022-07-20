@@ -18,10 +18,10 @@ async addUser(req,res){
  async viewUser(req,res,next){
     // res.status(200).send("you are in view page");
     try{
-const data=await User.find();
-res.status(200).send(data);
+ const data=await User.find({});
+   res.status(200).json(data);
     }catch(err){
-console.log(err);
+    res.status(400).send(err);
     }
     next();
 }

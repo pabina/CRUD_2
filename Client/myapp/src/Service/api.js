@@ -18,6 +18,13 @@ async adduser(data){
         console.log(error);
     }
 }
+async viewuser(){
+    try{
+   return await axios.get(`${url}/home/view`)
+    }catch(error){
+        console.log(error);
+    }
+}
 
 // async viewuser(){
 //     try{

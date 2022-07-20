@@ -1,23 +1,61 @@
-import axios from 'axios';
 import React from 'react';
+import {Table,TableHead,TableBody,TableRow,TableCell,styled,Button} from '@mui/material';
 import { useEffect } from 'react';
+import apiFunctinality from '../Service/api';
 import { useState } from 'react';
-// import apiFunctinality from '../Service/api';
 
-// const myapiFunctinality=new apiFunctinality();
+
+//styling table
+const styleTable=styled(Table)`
+width:50%`
+
+const MyapiFunctinality=new apiFunctinality();
 
 const AllUsers = () => {
-  const[allUsers,setAllUsers]=useState();
-  useEffect( async() => {
-    const viewUser= await axios.get("http://localhost:8004/home/view");
-    setAllUsers(viewUser);
-  });
-console.log(allUsers)
+  
+  const [allUsersData,setallData]=useState([]);
+  useEffect(()=>{
+  console.log("hello");
+  getallUsers();
+  },[]);
+
+  const getallUsers=async()=>{
+   const res= await MyapiFunctinality.viewuser();
+   setallData(res.data);
+   console.log(res.data);
+  }
+
   return (
-    <div>
-     {/* {myapiFunctinality.viewuser()}; */}
-    </div>
+
+    <>
+    <styleTable>
+      <TableHead>
+        <TableRow>
+          <TableCell>ID</TableCell>
+          <TableCell>NAME</TableCell>
+          <TableCell>LOCATION</TableCell>
+          <TableCell>EMAIL</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {
+          allUsersData.map(data=>(
+<TableRow>
+  <TableCell>{data._id}</TableCell>
+  <TableCell>{data.name}</TableCell>
+  <TableCell>{data.location}</TableCell>
+  <TableCell>{data.email}</TableCell>
+  <TableCell>
+    <Button variant="contained" style={{marginRight:10}}>Edit</Button>
+    <Button variant="contained" color="error">Delete</Button>
+  </TableCell>
+</TableRow>
+          ))
+        }
+      </TableBody>
+    </styleTable>
+    </>
   )
 }
 
-export default AllUsers;
+export default AllUsers

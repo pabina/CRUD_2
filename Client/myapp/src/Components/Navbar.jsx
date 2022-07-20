@@ -21,7 +21,7 @@ const Navbar = () => {
     <div> 
       <Header position='static'>
         <Toolbar>
-      <Tabs to='/Allusers'> AllUsers</Tabs>
+      <Tabs to='/allUsers'> AllUsers</Tabs>
       <Tabs to='/Addusers'> AddUser</Tabs>
         </Toolbar>
       
