@@ -2,7 +2,7 @@ import  express, { Router } from "express";
 import Myrouter from "./Route/Home_route.js";
 import Connection from "./Connection/db.js";
 import mongoose from "mongoose";
-// import cors from "cors";
+import cors from "cors";
 
 const app=express();
 
@@ -13,7 +13,7 @@ app.get('/',(req,res,next)=>{
 })
 //use middleware
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 
 //using router 
 app.use("/home",Myrouter);

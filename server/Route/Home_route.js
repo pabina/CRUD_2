@@ -18,4 +18,10 @@ Myrouter.post("/add",Controller.addUser);
 
 //view route
  Myrouter.get("/view",Controller.viewUser);
+
+ //delete route
+ Myrouter.delete("/delete",Controller.deleteUser);
+
+ //getone postdata
+ Myrouter.get("/viewone/:id",Controller.viewone);
  export default Myrouter;

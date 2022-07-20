@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import autoIncrement from "mongoose-auto-increment";
+// import autoIncrement from "mongoose-auto-increment";
 
 //creating schema
 const UserModel=mongoose.Schema({
@@ -10,8 +10,8 @@ const UserModel=mongoose.Schema({
 });
 
 //applying auto-increment
-autoIncrement.initialize(mongoose.connection);
-UserModel.plugin (autoIncrement.plugin,"user");
+// autoIncrement.initialize(mongoose.connection);
+// UserModel.plugin (autoIncrement.plugin,"user");
 
 //creating collection
 const user=mongoose.model("user",UserModel);
