@@ -29,11 +29,21 @@ async addUser(req,res){
 //delete post
 async deleteUser(req,res){
 try{
-const postdelete=await User.findByIdAndDelete("62d7a6eb07f2e25bc095ecd8");
-res.status(200).send(postdelete);
+const postdelete=await User.findByIdAndDelete(req.params.id);
+res.status(200).json(postdelete);
 }catch(err){
     console.log(err);
 }
+}
+
+//edit user
+async editUser(req,res){
+   try {
+   const EditUser= await User.updateOne(req.params.id,{$set:req.body},{new:true});
+   res.status(200).json(EditUser);
+   } catch (error) {
+    console.log(error);
+   }
 }
  //viewone
  async viewone(req,res){

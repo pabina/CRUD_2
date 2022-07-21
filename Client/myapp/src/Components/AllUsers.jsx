@@ -3,6 +3,7 @@ import {Table,TableHead,TableBody,TableRow,TableCell,styled,Button} from '@mui/m
 import { useEffect } from 'react';
 import apiFunctinality from '../Service/api';
 import { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 
 //styling table
@@ -46,7 +47,7 @@ const AllUsers = () => {
   <TableCell>{data.location}</TableCell>
   <TableCell>{data.email}</TableCell>
   <TableCell>
-    <Button variant="contained" style={{marginRight:10}}>Edit</Button>
+    <Button variant="contained" style={{marginRight:10}} component={Link} to={`/edit/${data._id}`}>Edit</Button>
     <Button variant="contained" color="error">Delete</Button>
   </TableCell>
 </TableRow>
