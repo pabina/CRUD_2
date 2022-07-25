@@ -30,12 +30,12 @@ import axios from "axios";
     position: static;
   `;
   
-  const defaultValue = {
-    name: "",
-    location: "",
-    email: "",
-    phone: "",
-  };
+  // const defaultValue = {
+  //   name: "",
+  //   location: "",
+  //   email: "",
+  //   phone: "",
+  // };
 
   
   
@@ -46,22 +46,27 @@ import axios from "axios";
     
     //FOR editing USER
      const navigate=useNavigate();
-    const [state, setState] = useState({ defaultValue });
+    // const [state, setState] = useState({ defaultValue });
+    
 
     
   
-    const valuechange = function (e) {
-      // e.preventDefault();
-      console.log({ ...state, [e.target.name]: e.target.value });
-      setState({ ...state, [e.target.name]: e.target.value });
+    // const valuechange = function (e) {
+    //   // e.preventDefault();
+    //   console.log({ ...state, [e.target.name]: e.target.value });
+    //   setState({ ...state, [e.target.name]: e.target.value });
       
-    };
+    // };
+    
     
   
-    const onbuttonClick = async function () {
-      await MyapiFunctinality.edituser(state,id);
-      console.log("you have clicked button");
-      navigate("/allUsers");
+    // const onbuttonClick = async function () {
+    //   await MyapiFunctinality.edituser(state,id);
+    //   console.log("you have clicked button");
+    //   navigate("/allUsers");
+    // };
+    const onbuttonClick=function(){
+
     };
 
 //   const [data,setData]=useState({});
@@ -89,6 +94,15 @@ useEffect(()=>{
    setData(res.data);
    console.log(res);
   }
+  const [name,setName]=useState(data.name);
+  const [location,setlocation]=useState(data.location);
+  const [email,setemail]=useState(data.email);
+  const [phone,setphone]=useState(data.phone);
+
+   const handleChange=(e)=>{
+   setName(name=>({
+    ...name,[e.target.name]:e.target.value}))
+   }
   
     return (
       <>
@@ -98,7 +112,7 @@ useEffect(()=>{
             <InputLabel>Name </InputLabel>
             <Input
               onChange={(e) => {
-                valuechange(e); 
+               setName(e.target.value); 
               }}
               name="name"
               value={data.name}
@@ -108,7 +122,7 @@ useEffect(()=>{
             <InputLabel>location</InputLabel>
             <Input
               onChange={(e) => {
-                valuechange(e);
+               setlocation(e.target.value)
               }}
               name="location"
               value={data.location}
@@ -117,9 +131,7 @@ useEffect(()=>{
           <FormControl>
             <InputLabel>email </InputLabel>
             <Input
-              onChange={(e) => {
-                valuechange(e);
-              }}
+              onChange={handleChange}
               name="email"
               value={data.email}
             />
@@ -128,7 +140,7 @@ useEffect(()=>{
             <InputLabel>phone</InputLabel>
             <Input
               onChange={(e) => {
-                valuechange(e);
+               setphone(e.target.phone);
               }}
               name="phone"
               value={data.phone}
